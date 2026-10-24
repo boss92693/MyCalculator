@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CalcHub: free online calculators</title>
+<meta name="description" content="Free online calculators: scientific, loan EMI, SIP, GST, percentage, BMI, unit converters, age and more. Fast, simple and works on any phone.">
+<meta property="og:title" content="CalcHub: free online calculators">
+<meta property="og:description" content="28 free calculators for study, money, health, math and everyday use.">
+<meta name="theme-color" content="#F2F4F6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F2F4F6;--sf:#fff;--soft:#E9ECF0;--ink:#0F1720;--mut:#5A6574;--line:#DDE2E8;--acc:#F25C05;--on:#fff;--lcd:#CBD5AE;--lcdi:#1D2A12;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1216;--sf:#171C22;--soft:#1F252D;--ink:#ECEFF3;--mut:#97A1AF;--line:#262D36;--acc:#FF8440;--on:#101418;--lcd:#B4C193;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0E1216;--sf:#171C22;--soft:#1F252D;--ink:#ECEFF3;--mut:#97A1AF;--line:#262D36;--acc:#FF8440;--on:#101418;--lcd:#B4C193;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.5 Outfit,system-ui,-apple-system,"Segoe UI",sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--sf);z-index:10}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--sf);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:1rem;padding:.7rem max(1rem,calc((100% - 72rem)/2))}
+.brand{display:flex;align-items:center;gap:.6rem;font-weight:700;font-size:1.25rem;color:var(--ink);text-decoration:none;margin-right:auto}
+.mk{display:grid;place-items:center;width:2rem;height:2rem;border-radius:.5rem;background:var(--acc);color:var(--on);font-size:1.3rem;line-height:1}
+#th{width:2.4rem;height:2.4rem;border-radius:50%;border:1px solid var(--line);background:var(--sf);color:var(--ink);font-size:1.1rem;cursor:pointer}
+input,select{width:100%;font:inherit;padding:.65rem .75rem;border:2px solid var(--line);border-radius:.5rem;background:var(--bg);color:var(--ink)}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+#q{display:none;width:20rem}
+.lay{max-width:72rem;margin:0 auto;padding:1.25rem 1rem 2rem;display:grid;grid-template-columns:minmax(0,1fr);gap:1.5rem}
+#nav{display:none}
+#sel{margin-bottom:1rem;font-weight:700;background:var(--sf)}
+.g b{display:block;font-size:.85rem;color:var(--mut);margin:1rem 0 .25rem;padding:0 .6rem}
+.g:first-child b{margin-top:0}
+#nav button{display:block;width:100%;text-align:left;background:none;border:0;border-left:3px solid transparent;color:var(--ink);font:inherit;padding:.45rem .6rem;border-radius:0 .4rem .4rem 0;cursor:pointer}
+#nav button:hover{background:var(--soft)}
+#nav button.on{background:var(--soft);border-left-color:var(--acc);font-weight:700}
+.mut{color:var(--mut);padding:.5rem}
+@media(min-width:820px){#q{display:block}.lay{grid-template-columns:15rem minmax(0,1fr)}#nav{display:block;position:sticky;top:calc(4.5rem + env(safe-area-inset-top,0px));align-self:start;max-height:calc(100vh - 6rem);overflow:auto}#sel{display:none}}
+.pn{background:var(--sf);border:1px solid var(--line);border-radius:.9rem;padding:1.25rem}
+.crumb{margin:0;color:var(--mut);font-size:.9rem}
+h1{font-size:clamp(1.8rem,6vw,2.4rem);line-height:1.1;margin:.2rem 0 1.25rem;font-weight:700;letter-spacing:-.02em}
+.cols{display:grid;gap:1rem 2rem}
+@media(min-width:700px){.cols{grid-template-columns:1fr 1fr}}
+label{display:block;margin-bottom:.8rem;font-weight:700}
+label>*{margin-top:.3rem;font-weight:400}
+.lcd{background:var(--lcd);color:var(--lcdi);border-radius:.6rem;padding:.8rem 1rem;font-family:"DM Mono",monospace;box-shadow:inset 0 2px 6px rgba(0,0,0,.25)}
+.lcd div{padding:.35rem 0;word-break:break-all}
+.lcd div+div{border-top:1px dashed rgba(29,42,18,.35)}
+.lcd small{display:block;opacity:.7;font-size:.8rem}
+output{display:block;font-size:1.6rem;word-break:break-all}
+#rs{font-size:2.1rem;min-height:2.7rem}
+.bar{display:flex;height:.7rem;border-radius:99px;overflow:hidden;background:var(--ink);margin:1rem 0 .35rem}
+.bar i{background:var(--acc)}
+.lg{display:flex;justify-content:space-between;font-size:.85rem;color:var(--mut)}
+.sci{max-width:26rem;margin:0 auto}
+.sci .lcd{margin-bottom:1rem}
+.keys{display:grid;grid-template-columns:repeat(5,1fr);gap:.5rem}
+.keys button{font:700 1.1rem Outfit,sans-serif;padding:.9rem 0;border:0;border-bottom:3px solid var(--line);border-radius:.5rem;background:var(--soft);color:var(--ink);cursor:pointer}
+.keys button:active{transform:translateY(2px)}
+.keys .op{background:var(--acc);color:var(--on)}
+.keys .fn{background:var(--ink);color:var(--bg)}
+.keys .f{font-size:.95rem;color:var(--mut)}
+.hs{margin-top:1rem;display:flex;flex-direction:column}
+.hs button{background:none;border:0;border-bottom:1px solid var(--line);text-align:right;color:var(--mut);font:500 .9rem "DM Mono",monospace;padding:.4rem 0;cursor:pointer}
+footer{margin-top:1rem;font-size:.85rem;color:var(--mut)}
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="#scientific"><span class="mk">=</span>CalcHub</a>
+  <input id="q" type="search" aria-label="Search calculators">
+  <button id="th" type="button" aria-label="Switch light or dark theme">◐</button>
+</header>
+<div class="lay">
+  <nav id="nav" aria-label="Calculators"></nav>
+  <main>
+    <select id="sel" aria-label="Choose a calculator"></select>
+    <div class="pn">
+      <p class="crumb" id="cr"></p>
+      <h1 id="ct"></h1>
+      <div id="body"></div>
+    </div>
+    <footer>CalcHub gives quick estimates. Results are for guidance only, so check big money or health decisions with an expert.</footer>
+  </main>
+</div>
+<script>
+const f=(x,d=2)=>isFinite(x)?(+x).toLocaleString('en-IN',{maximumFractionDigits:d}):'—',m=x=>isFinite(x)?'₹'+f(x):'—';
+const U=(c,n,N,F)=>({c,n,f:[['v','Value',1],['a','From',N],['b','To',N]],r:v=>[[N[v.b],f(v.v*F[v.a]/F[v.b],6)]]});
+const B=(a,x,y,p,q)=>Object.assign(a,{bar:[x,y,p,q]});
+const T=['°C','°F','K'];
+const C=[
+{c:'Basic',n:'Scientific',s:1},
+{c:'Basic',n:'Percentage',f:[['m','Type',['A% of B','A is what % of B','Change from A to B']],['a','A',20],['b','B',500]],r:v=>[v.m==0?['Result',f(v.a*v.b/100)]:v.m==1?['A is',f(v.a/v.b*100)+'%']:['Change',f((v.b-v.a)/v.a*100)+'%']]},
+{c:'Basic',n:'Marks %',f:[['o','Marks obtained',450],['t','Total marks',500],['g','Target %',98]],r:v=>[['Your percentage',f(v.o/v.t*100)+'%'],['Marks needed for target',f(v.t*v.g/100)]]},
+{c:'Basic',n:'Average',f:[['l','Numbers (comma separated)','10, 20, 30']],r:v=>{let a=v.l.split(/[\s,]+/).filter(Boolean).map(Number);if(!a.length||a.some(isNaN))return'Type numbers separated by commas';let s=a.reduce((p,q)=>p+q,0);return[['Count',a.length],['Sum',f(s,4)],['Average',f(s/a.length,4)],['Smallest',f(Math.min(...a),4)],['Largest',f(Math.max(...a),4)]]}},
+{c:'Money',n:'Loan EMI',f:[['p','Loan amount (₹)',500000],['r','Interest rate (% per year)',9],['y','Years',5]],r:v=>{let i=v.r/1200,n=v.y*12,e=i?v.p*i*(1+i)**n/((1+i)**n-1):v.p/n;return B([['Monthly EMI',m(e)],['Total interest',m(e*n-v.p)],['Total payment',m(e*n)]],v.p,e*n-v.p,'Principal','Interest')}},
+{c:'Money',n:'SIP',f:[['p','Monthly investment (₹)',5000],['r','Expected return (% per year)',12],['y','Years',10]],r:v=>{let i=v.r/1200,n=v.y*12,g=i?v.p*((1+i)**n-1)/i*(1+i):v.p*n;return B([['Money invested',m(v.p*n)],['Returns',m(g-v.p*n)],['Final value',m(g)]],v.p*n,g-v.p*n,'Invested','Returns')}},
+{c:'Money',n:'Fixed deposit',f:[['p','Deposit (₹)',100000],['r','Interest rate (% per year)',7],['y','Years',5]],r:v=>{let a=v.p*(1+v.r/400)**(4*v.y);return B([['Interest earned',m(a-v.p)],['Maturity amount',m(a)]],v.p,a-v.p,'Deposit','Interest')}},
+{c:'Money',n:'Interest',f:[['t','Type',['Simple','Compound']],['p','Principal (₹)',10000],['r','Rate (% per year)',8],['y','Years',3]],r:v=>{let a=v.t?v.p*(1+v.r/100)**v.y:v.p*(1+v.r*v.y/100);return B([['Interest',m(a-v.p)],['Total amount',m(a)]],v.p,a-v.p,'Principal','Interest')}},
+{c:'Money',n:'GST',f:[['t','Mode',['Add GST','Remove GST']],['a','Amount (₹)',1000],['r','GST rate',['5%','12%','18%','28%']]],r:v=>{let g=[5,12,18,28][v.r],b=v.t?v.a/(1+g/100):v.a,x=b*g/100;return[['Base price',m(b)],['GST',m(x)],['Total',m(b+x)]]}},
+{c:'Money',n:'Discount',f:[['p','Price (₹)',2000],['d','Discount (%)',25]],r:v=>[['You save',m(v.p*v.d/100)],['Final price',m(v.p*(1-v.d/100))]]},
+{c:'Money',n:'Split bill',f:[['b','Bill (₹)',1200],['t','Tip (%)',10],['n','People',4]],r:v=>{let a=v.b*(1+v.t/100);return[['Total with tip',m(a)],['Each person pays',m(a/v.n)]]}},
+{c:'Health',n:'BMI',f:[['w','Weight (kg)',60],['h','Height (cm)',165]],r:v=>{let b=v.w/(v.h/100)**2;return[['BMI',f(b,1)],['Category',b<18.5?'Underweight':b<25?'Normal':b<30?'Overweight':'Obese']]}},
+{c:'Health',n:'BMR',f:[['g','Gender',['Male','Female']],['a','Age',16],['w','Weight (kg)',60],['h','Height (cm)',165]],r:v=>{let b=10*v.w+6.25*v.h-5*v.a+(v.g?-161:5);return[['At rest (calories/day)',f(b,0)],['Light activity',f(b*1.375,0)],['Heavy activity',f(b*1.725,0)]]}},
+{c:'Math',n:'Quadratic',f:[['a','a',1],['b','b',-3],['c','c',2]],r:v=>{let d=v.b*v.b-4*v.a*v.c,q=2*v.a;return d<0?[['Discriminant',f(d)],['Roots','No real roots']]:[['Root 1',f((-v.b+Math.sqrt(d))/q,4)],['Root 2',f((-v.b-Math.sqrt(d))/q,4)],['Discriminant',f(d)]]}},
+{c:'Math',n:'HCF and LCM',f:[['a','First number',12],['b','Second number',18]],r:v=>{let g=(x,y)=>y?g(y,x%y):x,d=g(v.a,v.b);return[['HCF (GCD)',f(d)],['LCM',f(v.a*v.b/d)]]}},
+{c:'Math',n:'nPr and nCr',f:[['n','n',10],['r','r',3]],r:v=>{let F=k=>k>1?k*F(k-1):1;return v.r>v.n?'r must not be more than n':[['nPr',f(F(v.n)/F(v.n-v.r),0)],['nCr',f(F(v.n)/F(v.r)/F(v.n-v.r),0)]]}},
+{c:'Math',n:'Area',f:[['s','Shape',['Circle','Rectangle','Triangle']],['a','Radius, length or base',5],['b','Width or height (not for circle)',4]],r:v=>[['Area',f([Math.PI*v.a*v.a,v.a*v.b,v.a*v.b/2][v.s],3)]]},
+{c:'Math',n:'Number base',f:[['v','Number','255'],['b','Number is in',['Decimal','Binary','Octal','Hex']]],r:v=>{let n=parseInt(v.v,[10,2,8,16][v.b]);return isNaN(n)?'Not a valid number':[['Decimal',n],['Binary',n.toString(2)],['Octal',n.toString(8)],['Hex',n.toString(16).toUpperCase()]]}},
+U('Convert','Length',['Meter','Kilometer','Centimeter','Millimeter','Mile','Foot','Inch'],[1,1000,.01,.001,1609.344,.3048,.0254]),
+U('Convert','Weight',['Kilogram','Gram','Milligram','Quintal','Pound','Ounce'],[1,.001,1e-6,100,.45359237,.0283495]),
+U('Convert','Land area',['Sq meter','Sq foot','Acre','Hectare','Sq km'],[1,.092903,4046.856,1e4,1e6]),
+U('Convert','Volume',['Liter','Milliliter','Cubic meter','Gallon'],[1,.001,1000,3.785411784]),
+U('Convert','Speed',['km/h','m/s','mph','Knot'],[1,3.6,1.609344,1.852]),
+U('Convert','Time',['Second','Minute','Hour','Day','Week'],[1,60,3600,86400,604800]),
+U('Convert','Data size',['Byte','KB','MB','GB','TB'],[1,1024,1024**2,1024**3,1024**4]),
+{c:'Convert',n:'Temperature',f:[['v','Value',25],['a','From',T],['b','To',T]],r:v=>{let c=[v.v,(v.v-32)*5/9,v.v-273.15][v.a];return[[T[v.b],f([c,c*9/5+32,c+273.15][v.b],2)]]}},
+{c:'Date',n:'Age',f:[['d','Date of birth',null]],r:v=>{let t=new Date();if(!v.d)return'Pick a date';if(v.d>t)return'Date is in the future';let y=t.getFullYear()-v.d.getFullYear(),o=t.getMonth()-v.d.getMonth(),d=t.getDate()-v.d.getDate();if(d<0){o--;d+=new Date(t.getFullYear(),t.getMonth(),0).getDate()}if(o<0){y--;o+=12}let b=new Date(t.getFullYear(),v.d.getMonth(),v.d.getDate());if(b<t)b.setFullYear(t.getFullYear()+1);return[['Age',y+' years, '+o+' months, '+d+' days'],['Total days',f(Math.floor((t-v.d)/864e5),0)],['Next birthday in',Math.ceil((b-t)/864e5)+' days']]}},
+{c:'Date',n:'Date difference',f:[['a','From',null],['b','To',null]],r:v=>{if(!v.a||!v.b)return'Pick both dates';let d=Math.round((v.b-v.a)/864e5);return[['Days',f(d,0)],['Weeks',f(d/7,1)],['Months (about)',f(d/30.44,1)],['Years (about)',f(d/365.25,2)]]}}
+];
+const cats=['Basic','Money','Health','Math','Convert','Date'],H=[];let cur=0,ex='',an=0,deg=true;
+const $=s=>document.querySelector(s),sl=x=>x.n.toLowerCase().replace(/\W/g,'');
+function nav(){let q=$('#q').value.toLowerCase();$('#nav').innerHTML=cats.map(c=>{let b=C.map((x,i)=>[x,i]).filter(([x])=>x.c==c&&x.n.toLowerCase().includes(q)).map(([x,i])=>`<button data-i="${i}"${i==cur?' class="on"':''}>${x.n}</button>`).join('');return b?`<div class="g"><b>${c}</b>${b}</div>`:''}).join('')||'<p class="mut">No calculator found.</p>'}
+function openCalc(i){cur=i;let x=C[i];$('#cr').textContent=x.c;$('#ct').textContent=x.n;document.title=x.n+' calculator | CalcHub';$('#sel').value=i;$('#body').oninput=null;x.s?sci():form(x);nav();try{history.replaceState(null,'','#'+sl(x))}catch(e){}scrollTo(0,0)}
+function form(x){
+  $('#body').innerHTML='<div class="cols"><div>'+x.f.map(([id,l,d])=>`<label>${l}${Array.isArray(d)?`<select id="${id}">${d.map(o=>`<option>${o}</option>`).join('')}</select>`:`<input id="${id}" type="${d===null?'date':typeof d=='number'?'number':'text'}" value="${d??''}" step="any" inputmode="${typeof d=='number'?'decimal':'text'}">`}</label>`).join('')+'</div><div><div class="lcd" id="out"></div><div id="bar"></div></div></div>';
+  $('#body').oninput=()=>run(x);run(x)}
+function run(x){let v={},h,b='';for(let[id,,d]of x.f){let e=$('#'+id);v[id]=Array.isArray(d)?e.selectedIndex:d===null?(e.value?new Date(e.value+'T00:00'):null):typeof d=='number'?parseFloat(e.value):e.value}
+  try{let o=Object.values(v).some(y=>typeof y=='number'&&isNaN(y))?'Fill in all the fields':x.r(v);h=typeof o=='string'?`<div>${o}</div>`:o.map(([a,c])=>`<div><small>${a}</small><output>${c}</output></div>`).join('');if(o.bar&&o.bar[0]+o.bar[1]>0)b=`<div class="bar"><i style="width:${o.bar[0]/(o.bar[0]+o.bar[1])*100}%"></i></div><div class="lg"><span>${o.bar[2]}: ${m(o.bar[0])}</span><span>${o.bar[3]}: ${m(o.bar[1])}</span></div>`}catch(e){h='<div>Check your input</div>'}
+  $('#out').innerHTML=h;$('#bar').innerHTML=b}
+const K=[['DEG','D'],'(',')',['AC','AC'],['⌫','B'],['sin','sin('],['cos','cos('],['tan','tan('],['ln','ln('],['log','log('],['√','√('],['x²','^2'],['xʸ','^'],'π','e','7','8','9','÷','!','4','5','6','×','%','1','2','3','−',['Ans','A'],'0','.','00','+','='];
+function sci(){$('#body').innerHTML='<div class="sci"><div class="lcd"><div id="ex"></div><output id="rs"></output></div><div class="keys">'+K.map(k=>{let[l,v]=Array.isArray(k)?k:[k,k];return`<button data-k="${v}" class="${/^[÷×−+=]$/.test(l)?'op':/^(AC|⌫|DEG)$/.test(l)?'fn':l.length>1&&!/^\d+$/.test(l)&&l!='Ans'?'f':''}">${l}</button>`}).join('')+'</div><div class="hs" id="hs"></div></div>';ex='';upd();hist()}
+function hist(){let e=$('#hs');if(e)e.innerHTML=H.map((h,i)=>`<button data-h="${i}">${h[0]} = ${h[1]}</button>`).join('')}
+const fmt=r=>isFinite(r)?String(+(+(Math.abs(r)<1e-12?0:r)).toPrecision(12)):'Error';
+function ev(s){let t=s.replace(/sin\(/g,'S(').replace(/cos\(/g,'C(').replace(/tan\(/g,'T(').replace(/ln\(/g,'L(').replace(/log\(/g,'G(').replace(/√\(/g,'R(').replace(/π/g,'P').replace(/e/g,'E').replace(/×/g,'*').replace(/÷/g,'/').replace(/−/g,'-').replace(/([\d)PEA])(?=[SCTLGRPEA(])/g,'$1*').replace(/\^/g,'**').replace(/(\d+\.?\d*)!/g,'F($1)').replace(/(\d+\.?\d*)%/g,'($1/100)');
+  if(/[^\d+\-*/().SCTLGRPEFA ]/.test(t))throw 0;let k=deg?Math.PI/180:1;
+  return Function('S','C','T','L','G','R','P','E','F','A','return '+t)(x=>Math.sin(x*k),x=>Math.cos(x*k),x=>Math.tan(x*k),Math.log,Math.log10,Math.sqrt,Math.PI,Math.E,x=>{let r=1;for(;x>1;)r*=x--;return r},an)}
+function upd(){$('#ex').textContent=ex||'0';let r='';try{if(ex&&ex!='Error')r=fmt(ev(ex))}catch(e){}$('#rs').textContent=r}
+function key(k){if(ex=='Error')ex='';
+  if(k=='AC')ex='';else if(k=='B')ex=ex.replace(/(sin\(|cos\(|tan\(|ln\(|log\(|√\(|.)$/,'');
+  else if(k=='D'){deg=!deg;$('[data-k="D"]').textContent=deg?'DEG':'RAD'}
+  else if(k=='='){if(ex)try{an=ev(ex);let r=fmt(an);if(r=='Error')throw 0;H.unshift([ex,r]);H.length=Math.min(H.length,5);ex=r;hist()}catch(e){ex='Error'}}
+  else ex+=k;upd()}
+document.onclick=e=>{let t=e.target.closest('button');if(!t)return;let d=t.dataset;
+  if(d.i!=null)openCalc(+d.i);else if(d.k!=null){key(d.k);t.blur()}else if(d.h!=null){ex=H[d.h][1];upd()}};
+document.onkeydown=e=>{if(!C[cur].s||/INPUT|SELECT/.test(e.target.tagName)||e.ctrlKey||e.metaKey||(e.key=='Enter'&&e.target.tagName=='BUTTON'))return;let M={'*':'×','/':'÷','-':'−',Enter:'=',Backspace:'B',Escape:'AC',Delete:'AC',p:'π'},k=M[e.key]||e.key;if(/^[\d.+()^%!eπ=]$/.test(k)||['×','÷','−','B','AC'].includes(k)){e.preventDefault();key(k)}};
+$('#th').onclick=()=>{let d=document.documentElement,x=d.dataset.theme?d.dataset.theme=='dark':matchMedia('(prefers-color-scheme:dark)').matches;d.dataset.theme=x?'light':'dark'};
+$('#q').oninput=nav;$('#q').placeholder='Search '+C.length+' calculators';
+$('#sel').innerHTML=cats.map(c=>`<optgroup label="${c}">${C.map((x,i)=>x.c==c?`<option value="${i}">${x.n}</option>`:'').join('')}</optgroup>`).join('');
+$('#sel').onchange=e=>openCalc(+e.target.value);
+onhashchange=()=>{let i=C.findIndex(x=>sl(x)==location.hash.slice(1));if(i>=0&&i!=cur)openCalc(i)};
+openCalc(Math.max(0,C.findIndex(x=>sl(x)==location.hash.slice(1))));
+</script>
+</body>
+</html>
